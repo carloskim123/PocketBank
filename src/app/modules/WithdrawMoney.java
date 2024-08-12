@@ -5,38 +5,23 @@ import utils.AccountFinder;
 import utils.BankData;
 
 import java.math.BigInteger;
-import java.util.Scanner;
 
 public class WithdrawMoney {
-    public static void withdrawMoney() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter account number: ");
-
-        BigInteger providedAccountNumber = scanner.nextBigInteger();
-
-        Account account = AccountFinder.locateByAccountNumber(BankData.BANK, providedAccountNumber);
+    public static WithdrawResult withdrawMoney(BigInteger accountNumber, double withdrawAmount) {
+        Account account = AccountFinder.locateByAccountNumber(BankData.BANK, accountNumber);
 
         if (account != null) {
-            System.out.println("Account Found!!");
-            System.out.println("The account's account number is: " + account.accountNumber);
-            System.out.println("Account Name: " + account.accountName);
-            System.out.println("Current Balance: $" + account.balance);
-
-            // Prompt user for withdraw amount
-            System.out.print("Enter amount to withdraw: ");
-            double withdrawAmount = scanner.nextDouble();
-
             // Check if withdraw amount is positive and the account has enough funds
             if (withdrawAmount > 0 && account.balance >= withdrawAmount) {
                 account.balance -= withdrawAmount;
-                System.out.println("Withdraw successful!");
-                System.out.println("New Balance: $" + account.balance);
                 saveAccounts.SAVE(account);
+
+                return new WithdrawResult(true, "Withdraw successful!");
             } else {
-                System.out.println("Insufficient funds. You can withdraw anything less than or equal to " + account.balance);
+                return new WithdrawResult(false, "Insufficient funds. Please check your current balance before making a withdrawal.");
             }
         } else {
-            System.out.println("Invalid account number");
+            return new WithdrawResult(false, "Invalid account number.");
         }
     }
 }

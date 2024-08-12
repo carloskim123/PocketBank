@@ -3,19 +3,21 @@ package app.modules;
 import app.PocketBankHost.Account;
 import utils.AccountFinder;
 import utils.BankData;
+import app.modules.DepositResult;
 
 import java.math.BigInteger;
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 public class DepositMoney {
-    public static void depositMoney() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Welcome to the Depositing Portal");
-        System.out.print("Enter account number: ");
-
-        BigInteger providedAccountNumber = scanner.nextBigInteger();
-
-        Account account = AccountFinder.locateByAccountNumber(BankData.BANK, providedAccountNumber);
+    public static DepositResult depositMoney(BigInteger accountNumber, double depositAmount) {
+//        Scanner scanner = new Scanner(System.in);
+//        System.out.println("Welcome to the Depositing Portal");
+//        System.out.print("Enter account number: ");
+//
+//        BigInteger providedAccountNumber = scanner.nextBigInteger();
+        System.out.println("provided acc. number: " + accountNumber);
+        Account account = AccountFinder.locateByAccountNumber(BankData.BANK, accountNumber);
 
         if (account != null) {
             System.out.println("Account Found!!");
@@ -25,8 +27,8 @@ public class DepositMoney {
             System.out.println("Current Balance: $" + account.balance);
 
             // Prompt user for deposit amount
-            System.out.print("Enter amount to deposit: ");
-            double depositAmount = scanner.nextDouble();
+//            System.out.print("Enter amount to deposit: ");
+//            double depositAmount = scanner.nextDouble();
 
             // Check if deposit amount is positive
             if (depositAmount > 0) {
@@ -34,11 +36,14 @@ public class DepositMoney {
                 System.out.println("Deposit successful!");
                 System.out.println("New Balance: $" + account.balance);
                 saveAccounts.SAVE(account);
+
+                return new DepositResult(true, "Deposit successful!");
+
             } else {
-                System.out.println("Invalid deposit amount. Please enter a positive value.");
+                return new DepositResult(false, "Deposit unsuccessful!");
             }
         } else {
-            System.out.println("Invalid account number");
+            return new DepositResult(false, "Invalid account number");
         }
     }
 }

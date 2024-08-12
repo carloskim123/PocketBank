@@ -6,19 +6,18 @@ import utils.BankData;
 import utils.BigIntegerUtils;
 
 import java.math.BigInteger;
-import java.util.Scanner;
 
 public class CreateAccount {
-    public static void createAccount() {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Let's create a new account");
-
-        System.out.print("Enter Account Name: ");
-        String accountName = scanner.nextLine();
-
-        System.out.println("Your account will be created with a starting balance of: $0.00");
-        System.out.println("You can begin depositing once you have completed the account creation process!!");
+    public static BigInteger createAccount(String accountName) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.println("Let's create a new account");
+//
+//        System.out.println("Enter Account Name: ");
+//        String accountName = scanner.nextLine();
+//
+//        System.out.println("Your account will be created with a starting balance of: $0.00");
+//        System.out.println("You can begin depositing once you have completed the account creation process!!");
 
         BigInteger accountNumber;
         boolean isUnique;
@@ -37,5 +36,6 @@ public class CreateAccount {
 
         System.out.println("Your account number is: " + accountNumber);
         System.out.println("Account created!!!");
+        return accountNumber;
     }
 }

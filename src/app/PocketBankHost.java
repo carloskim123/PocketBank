@@ -48,13 +48,13 @@ public class PocketBankHost {
 
             switch (choice) {
                 case 1:
-                    CreateAccount.createAccount();
+//                    CreateAccount.createAccount();
                     break;
                 case 2:
-                    DepositMoney.depositMoney();
+//                    DepositMoney.depositMoney();
                     break;
                 case 3:
-                    WithdrawMoney.withdrawMoney();
+//                    WithdrawMoney.withdrawMoney();
                     break;
                 case 4:
                     CheckAccountBalance.checkAccountBalance();
