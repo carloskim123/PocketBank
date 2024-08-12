@@ -114,10 +114,5 @@ public class PocketBankGUI extends JFrame {
         button.setPreferredSize(new Dimension(250, 40)); // Consistent button size
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            LOAD(); // Load accounts from a prepopulated access point
-            new PocketBankGUI().setVisible(true);
-        });
-    }
+
 }
