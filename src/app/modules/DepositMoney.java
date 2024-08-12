@@ -33,6 +33,7 @@ public class DepositMoney {
                 account.balance += depositAmount;
                 System.out.println("Deposit successful!");
                 System.out.println("New Balance: $" + account.balance);
+                saveAccounts.SAVE(account);
             } else {
                 System.out.println("Invalid deposit amount. Please enter a positive value.");
             }

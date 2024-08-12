@@ -31,6 +31,7 @@ public class WithdrawMoney {
                 account.balance -= withdrawAmount;
                 System.out.println("Withdraw successful!");
                 System.out.println("New Balance: $" + account.balance);
+                saveAccounts.SAVE(account);
             } else {
                 System.out.println("Insufficient funds. You can withdraw anything less than or equal to " + account.balance);
             }

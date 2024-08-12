@@ -6,7 +6,6 @@ import utils.BankData;
 
 import java.math.BigInteger;
 import java.util.Scanner;
-
 public class CheckAccountBalance {
     public static void checkAccountBalance() {
         System.out.println("Welcome to Pocket Banking Agency : Check Balance");

@@ -14,7 +14,7 @@ public class CreateAccount {
 
         System.out.println("Let's create a new account");
 
-        System.out.println("Enter Account Name: ");
+        System.out.print("Enter Account Name: ");
         String accountName = scanner.nextLine();
 
         System.out.println("Your account will be created with a starting balance of: $0.00");
@@ -33,6 +33,7 @@ public class CreateAccount {
 
         Account newAccount = new Account(accountNumber, 0.00, accountName);
         BankData.BANK.add(newAccount);
+        saveAccounts.SAVE(newAccount);
 
         System.out.println("Your account number is: " + accountNumber);
         System.out.println("Account created!!!");
